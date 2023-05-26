@@ -12,13 +12,13 @@ public class Ex1 extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		
 		System.out.print(getClass());
-		System.out.print(getClass().getResource("ex1.fxml"));//경로
+		System.out.print(getClass().getResource("loginForm.fxml"));//경로
 		
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("ex1.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
 		Parent form = loader.load();
 		
 		primaryStage.setScene(new Scene(form));// 생성자 화면에 넣어줌
-		primaryStage.setTitle("ex1");
+		primaryStage.setTitle("loginForm");
 		primaryStage.show();
 		
 	}
