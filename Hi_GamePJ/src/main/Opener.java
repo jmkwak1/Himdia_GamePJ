@@ -3,7 +3,6 @@ package main;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 public class Opener {
@@ -35,8 +34,7 @@ public class Opener {
 	
 	// 회원가입 화면을 실행하는 기능
 	public void regOpen() {
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("regForm.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("regForm.fxml"));
 		
 		regStage = new Stage();
 		try {

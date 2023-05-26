@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="291.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.RegController">
    <children>
       <VBox prefHeight="402.0" prefWidth="294.0">
          <children>
@@ -96,12 +96,12 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="86.0" prefWidth="294.0">
                <children>
-                  <Button fx:id="regBurron" mnemonicParsing="false" prefHeight="60.0" prefWidth="70.0" text="Login">
+                  <Button fx:id="regBurron" mnemonicParsing="false" onAction="#regProc" prefHeight="60.0" prefWidth="70.0" text="회원가입">
                      <HBox.margin>
                         <Insets right="60.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="70.0" text="Cencle" />
+                  <Button mnemonicParsing="false" onAction="#cancelProc" prefHeight="60.0" prefWidth="70.0" text="취소" />
                </children>
             </HBox>
          </children>
