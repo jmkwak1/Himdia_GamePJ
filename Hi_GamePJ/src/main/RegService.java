@@ -49,7 +49,7 @@ public class RegService {
 				if (movieCheck.isSelected())
 					hobbys += movieCheck.getText();
 
-				memberDao.insert(idFld.getText(), pwFld.getText(), nameFld.getText(), email);
+				memberDao.insert(idFld.getText(), pwFld.getText(), nameFld.getText(), email.getText());
 				CommonService.windowClose(regForm);
 			} else {
 				CommonService.msg("아이디를 입력하고 다시 시도하세요.");
