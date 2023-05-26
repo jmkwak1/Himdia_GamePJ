@@ -1,4 +1,4 @@
-package game;
+package gameTest;
 
 import java.awt.*;
 import java.awt.event.*;
