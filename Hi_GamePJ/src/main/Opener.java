@@ -20,7 +20,7 @@ public class Opener {
 	
 	// 메인 화면을 실행하는 기능
 	public void mainOpen() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("menuForm.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
 		
 		Parent menuForm;
 		try {
