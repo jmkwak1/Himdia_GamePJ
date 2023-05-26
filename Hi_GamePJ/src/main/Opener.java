@@ -45,9 +45,6 @@ public class Opener {
 			regCon.setRegStage(regStage);
 			regCon.setRegForm(regForm);
 			
-			ComboBox<String> ageCombo = (ComboBox<String>) regForm.lookup("#ageCombo");
-			ageCombo.getItems().addAll("10대", "20대", "30대", "40대");
-			
 			regStage.setScene(new Scene(regForm));
 			regStage.setTitle("회원가입 화면");
 			regStage.show();

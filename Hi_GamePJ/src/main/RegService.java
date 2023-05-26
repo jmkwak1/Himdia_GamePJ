@@ -18,38 +18,17 @@ public class RegService {
 	
 	public void insert(Parent regForm) {
 	
-		ComboBox<String> ageCombo = (ComboBox<String>) regForm.lookup("#ageCombo");
+		Button regButton = (Button) regForm.lookup("#regButton");		//회원가입
+		PasswordField pwFld = (PasswordField) regForm.lookup("#pw");	//비번
+		PasswordField confirmFld = (PasswordField) regForm.lookup("#confirm");	//비번확인
+		TextField emailFld = (TextField) regForm.lookup("#email");		//이메일
 		
-		Button regButton = (Button) regForm.lookup("#regButton");
-		PasswordField pwFld = (PasswordField) regForm.lookup("#pw");
-		PasswordField confirmFld = (PasswordField) regForm.lookup("#confirm");
 		if (pwFld.getText().equals(confirmFld.getText())) {
-			TextField idFld = (TextField) regForm.lookup("#id");
+			TextField idFld = (TextField) regForm.lookup("#id");		//아이디
 			if (idFld.getText().isEmpty() == false) {
-				TextField nameFld = (TextField) regForm.lookup("#name");
-				RadioButton womanRadio = (RadioButton) regForm.lookup("#womanRadio");
-				RadioButton manRadio = (RadioButton) regForm.lookup("#manRadio");
+				TextField nameFld = (TextField) regForm.lookup("#name");//이름
 
-				String gender = "";
-				if (womanRadio.isSelected())
-					gender = womanRadio.getText();
-				else if (manRadio.isSelected())
-					gender = manRadio.getText();
-
-				CheckBox musicCheck = (CheckBox) regForm.lookup("#musicCheck");
-				CheckBox sportCheck = (CheckBox) regForm.lookup("#sportCheck");
-				CheckBox movieCheck = (CheckBox) regForm.lookup("#movieCheck");
-				String hobbys = "";
-				if (musicCheck.isSelected())
-					hobbys += musicCheck.getText() + " ";
-
-				if (sportCheck.isSelected())
-					hobbys += sportCheck.getText() + " ";
-
-				if (movieCheck.isSelected())
-					hobbys += movieCheck.getText();
-
-				memberDao.insert(idFld.getText(), pwFld.getText(), nameFld.getText(), email.getValue());
+				memberDao.insert(idFld.getText(), pwFld.getText(), nameFld.getText(), emailFld.getText());
 				CommonService.windowClose(regForm);
 			} else {
 				CommonService.msg("아이디를 입력하고 다시 시도하세요.");
