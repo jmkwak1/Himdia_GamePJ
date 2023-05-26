@@ -1,4 +1,4 @@
-package gameTest;
+package game;
 
 public class Blocks {
     private static final int[][][] blockShapes = {
