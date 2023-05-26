@@ -10,12 +10,16 @@ public class Ex1 extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
-		System.out.print(getClass());
-		System.out.print(getClass().getResource("loginForm.fxml"));//경로
-		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
+		
 		Parent form = loader.load();
+		
+		// fxml에 지정된 Controller의 참조값을 반환
+		LoginController loginCon = loader.getController();
+		
+		Opener opener = new Opener();
+		loginCon.setOpener(opener);
+		opener.setPrimaryStage(primaryStage);
 		
 		primaryStage.setScene(new Scene(form));// 생성자 화면에 넣어줌
 		primaryStage.setTitle("loginForm");
