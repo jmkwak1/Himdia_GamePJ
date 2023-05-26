@@ -13,7 +13,7 @@ public class TetrisGame extends JPanel {
     private static final int FPS = 60;
 	private static final int BOARD_HEIGHT = 0;
 	private static final int BOARD_WIDTH = 0;
-	private static final int[][] BOARD = null;
+	private static final int[][] BOARD = null;  
 
     // 게임 상태
     private boolean isGameOver;
