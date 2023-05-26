@@ -1,4 +1,4 @@
-package game;
+package tetris;
 
 public class Blocks {
     private static final int[][][] blockShapes = {

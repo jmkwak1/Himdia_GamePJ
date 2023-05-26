@@ -1,4 +1,4 @@
-package game;
+package tetris;
 
 import java.awt.*;
 import java.awt.event.*;
