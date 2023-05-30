@@ -41,7 +41,7 @@ public class MemberDAO {
 	public void insert(
 			String id, String pw, String name, String email
 			) {
-		String sql = "INSERT INTO higame VALUES(?,?,?,?)";
+		String sql = "INSERT INTO higame (id, pw, name, email) VALUES(?,?,?,?)";
 		PreparedStatement ps = null;
 		try {
 			ps = con.prepareStatement(sql);
