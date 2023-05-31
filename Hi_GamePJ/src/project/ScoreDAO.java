@@ -11,7 +11,7 @@ public class ScoreDAO {
     private static final String password = "oracle"; // 데이터베이스 비밀번호
 
     public static void saveScore(int score) {
-        String sql = "INSERT INTO scores (score) VALUES (?)"; // 쿼리문
+        String sql = "INSERT INTO higame(score) VALUES (?)"; // 쿼리문
 
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
