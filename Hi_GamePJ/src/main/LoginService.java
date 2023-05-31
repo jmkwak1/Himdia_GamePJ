@@ -1,5 +1,7 @@
 package main;
 
+import java.lang.reflect.Member;
+
 public class LoginService {
 	private MemberDAO memberDao;
 	
@@ -8,12 +10,10 @@ public class LoginService {
 	}
 	
 	public void login(String id, String pw) {
-		if(id == null || id.isEmpty()) {
-			return;
-		}
-		if(pw == null || pw.isEmpty()) {
-			return;
-		}
+		if (id == null || id.isEmpty() || pw == null || pw.isEmpty()) {
+	        return;
+	    }
+		
 		// 아이디는 5 ~ 20 
 		if(id.length() <= 4 || id.length() > 20)
 			return;
