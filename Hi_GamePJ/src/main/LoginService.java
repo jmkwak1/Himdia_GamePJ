@@ -15,9 +15,8 @@ public class LoginService {
 	    }
 		
 		// 아이디는 5 ~ 20 
-		if(id.length() <= 4 || id.length() > 20)
+		if(id.length() <= 2 || id.length() > 20)
 			return;
-		
 		String dbPw = memberDao.login(id);
 		if(dbPw != null && dbPw.equals(pw)){
 			// 로그인 성공
