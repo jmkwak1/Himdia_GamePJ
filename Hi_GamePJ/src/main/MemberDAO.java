@@ -1,5 +1,6 @@
 package main;
 
+import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,9 +39,7 @@ public class MemberDAO {
 		return null;
 	}
 	
-	public void insert(
-			String id, String pw, String name, String email
-			) {
+	public void insert(String id, String pw, String name, String email) {
 		String sql = "INSERT INTO higame (id, pw, name, email) VALUES(?,?,?,?)";
 		PreparedStatement ps = null;
 		try {
@@ -54,4 +53,5 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+
 }
