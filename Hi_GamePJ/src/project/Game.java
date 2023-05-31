@@ -20,7 +20,7 @@ public class Game extends Application {
 
     private static final int ROW = 10;
     private static final int COL = 10;
-    private static final int MINE_CNT = 10;
+    private static final int MINE_CNT = 10; 
     private static final String MINE = "*";
     private static final String NONE = " ";
     private String mineArr[][] = null;

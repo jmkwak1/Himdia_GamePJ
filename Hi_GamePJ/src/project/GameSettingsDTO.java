@@ -5,7 +5,7 @@ public class GameSettingsDTO {
     private int col;
     private int mineCount;
 
-    public int getRow() {
+    public int getRow() { 
         return row;
     }
 
