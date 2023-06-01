@@ -103,7 +103,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="Boom" mnemonicParsing="false" onAction="#boomOpen" prefHeight="25.0" prefWidth="70.0" text="게임 시작" />
+                 <Button fx:id="Boom" mnemonicParsing="false" onAction="#boomOpen" prefHeight="25.0" prefWidth="70.0" text="게임 시작" />
                </children>
                <HBox.margin>
                   <Insets left="25.0" right="25.0" />

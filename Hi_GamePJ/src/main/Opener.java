@@ -1,5 +1,6 @@
 package main;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -50,6 +51,9 @@ public class Opener {
 			e.printStackTrace();
 		}
 	}
+	
+	//지뢰찾기 게임 시작
+
 	
 }
 
