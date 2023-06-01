@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import project.Game;
 import Blackjack.Blackjack;
+import tetris.TetrisGame;
 
 import java.io.IOException;
 
@@ -29,6 +30,17 @@ public class JavaOpener {
 	        Stage blackjackStage = new Stage();
 	        Blackjack main = new Blackjack();
 	        main.start(blackjackStage);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public void tetrisOpen(ActionEvent event) {
+		System.out.println("테트리스 시작");
+		try {
+	        Stage tetrisStage = new Stage();
+	        TetrisGame main = new TetrisGame();
+	        main.start(tetrisStage);
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

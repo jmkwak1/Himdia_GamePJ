@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import javafx.stage.Stage;
+
 public class TetrisGame extends JPanel {
 
     // 게임 상수
@@ -420,4 +422,13 @@ public class TetrisGame extends JPanel {
     	    frame.add(new TetrisGame());
     	    frame.setVisible(true);
     	}
+
+	public void start(Stage blackjackStage) {
+		JFrame frame = new JFrame("Tetris");
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setSize(COLS * BLOCK_SIZE + 16, ROWS * BLOCK_SIZE + 39); // 창의 크기를 BLOCK_SIZE로 조정
+	    frame.setResizable(false);
+	    frame.add(new TetrisGame());
+	    frame.setVisible(true);
+	}
 }

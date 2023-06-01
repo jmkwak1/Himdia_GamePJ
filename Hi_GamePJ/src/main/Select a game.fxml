@@ -78,7 +78,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="Tetris" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="게임 시작">
+                  <Button fx:id="Tetris" mnemonicParsing="false" onAction="#tetrisOpen" prefHeight="25.0" prefWidth="70.0" text="게임 시작">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
