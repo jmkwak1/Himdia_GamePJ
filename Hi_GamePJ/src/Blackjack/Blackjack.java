@@ -1,6 +1,10 @@
-package BlackjackMaster;
+package Blackjack;
 
 import javax.swing.*;
+
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.Timer;
 import java.util.TimerTask;
 import java.awt.*;
@@ -9,10 +13,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Blackjack {
+	private static JFrame frame = new MainFrame(); // MainFrame 클래스의 인스턴스 생성.
 
-	private static JFrame frame = new MainFrame(); // Creating an instance of the MainFrame class.
-
-	private static CardGroup deck, dealerCards, playerCards; //Declaring Variables: 
+	private static CardGroup deck, dealerCards, playerCards; //변수 선언:
 	private static CardGroupPanel dealerCardPanel = null, playerCardPanel = null; // The deck of cards, the dealer's cards, the player's cards, the panels for the player's and dealer's cards
 	private static Card dealerHiddenCard; //  and the hidden card of the dealer.
 
@@ -39,7 +42,7 @@ public class Blackjack {
 	private static JButton btnContinue;
 	private static JLabel lblShuffleInfo = null;
 
-	public static boolean isValidAmount(String s) { // This is to assure that the values entered for the initial balance and the player's bet are natural numbers.
+	public static boolean isValidAmount(String s) { // 이는 초기 잔액과 플레이어의 내기에 입력한 값이 자연수임을 확인하기 위한 것입니다.
 		try {
 			if (Integer.parseInt(s) > 0) // Ensure amount entered is > 0
 				return true;
@@ -50,7 +53,7 @@ public class Blackjack {
 		}
 	}
 
-	// This function runs when the program starts or when the game ends. It displays the initial GUI objects to enter an initial balance and start/stop a game
+	// 이 기능은 프로그램이 시작되거나 게임이 종료될 때 실행됩니다. 초기 잔액을 입력하고 게임을 시작/중지하기 위한 초기 GUI 개체를 표시합니다.
 	public static void initGuiObjects() {
 		btnNewGame = new JButton("New Game"); // New game button
 		btnNewGame.addActionListener(new ActionListener() {
@@ -61,32 +64,32 @@ public class Blackjack {
 		btnNewGame.setBounds(20, 610, 99, 50);
 		frame.getContentPane().add(btnNewGame);
 
-		btnEndGame = new JButton("End Game"); // End game button, this removes all GUI objects and starts from scratch
+		btnEndGame = new JButton("End Game"); // 게임 종료 버튼, 모든 GUI 개체를 제거하고 처음부터 시작합니다.
 		btnEndGame.setEnabled(false);
 		btnEndGame.setBounds(121, 610, 99, 50);
 		btnEndGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.getContentPane().removeAll(); // Remove all objects from screen
-				frame.repaint(); // Repaint to show update
-				initGuiObjects(); // Restart the game logic and display the New Game menu
+				frame.getContentPane().removeAll(); // 화면에서 모든 개체 제거
+				frame.repaint(); // 업데이트를 표시하도록 다시 그리기
+				initGuiObjects(); // 게임 로직을 다시 시작하고 New Game 메뉴를 표시합니다.
 			}
 		});
 		frame.getContentPane().add(btnEndGame);
 
-		tfBalance = new JTextField(); // Text field to store initial balance
+		tfBalance = new JTextField(); // 초기 잔액을 저장하는 텍스트 필드
 		tfBalance.setText("100");
 		tfBalance.setBounds(131, 580, 89, 28);
 		frame.getContentPane().add(tfBalance);
 		tfBalance.setColumns(10);
 
-		lblInitialBalance = new JLabel("Initial Balance:"); // Initial balance label
+		lblInitialBalance = new JLabel("Initial Balance:"); // 초기 잔액 레이블
 		lblInitialBalance.setFont(new Font("Arial", Font.BOLD, 13));
 		lblInitialBalance.setForeground(Color.WHITE);
 		lblInitialBalance.setBounds(30, 586, 100, 16);
 		frame.getContentPane().add(lblInitialBalance);
 	}
 
-	public static void showBetGui() { // This runs when a new game is started. It initializes and displays the current balance label, deal amount and deal button
+	public static void showBetGui() { // 새 게임이 시작될 때 실행됩니다. 현재 잔액 레이블, 거래 금액 및 거래 버튼을 초기화하고 표시합니다.
 
 		btnEndGame.setEnabled(true);
 
@@ -139,7 +142,7 @@ public class Blackjack {
 
 	}
 
-	public static void deal() { // Runs when the Deal button is pressed. Draws two player and dealer cards (only displaying one of the dealer's cards) and asks for an action from the player, or if there's an immediate outcome (eg. blackjack straight away), it takes action
+	public static void deal() { // 거래 버튼을 누르면 실행됩니다. 두 개의 플레이어 및 딜러 카드를 뽑고(딜러의 카드 중 하나만 표시) 플레이어에게 조치를 요청하거나 즉각적인 결과가 있는 경우(예: 즉시 블랙잭) 조치를 취합니다.
 
 		if (lblShuffleInfo != null) // (Every 5 rounds the deck is reshuffled and this label is displayed. Hide it when a new round is started
 			frame.getContentPane().remove(lblShuffleInfo);
@@ -243,7 +246,7 @@ public class Blackjack {
 
 	}
 
-	public static void hit() { // Add another card to player cards, show the new card and check for any outcomes
+	public static void hit() { // 플레이어 카드에 다른 카드를 추가하고 새 카드를 보여주고 결과를 확인합니다.
 
 		playerCards.cards.add(deck.takeCard());
 		updateCardPanels();
@@ -252,7 +255,7 @@ public class Blackjack {
 
 	}
 
-	public static boolean simpleOutcomes() { // This runs automatically whenever deal is pressed or the player hits
+	public static boolean simpleOutcomes() { //거래를 누르거나 플레이어가 명중할 때마다 자동으로 실행됩니다.
 		boolean outcomeHasHappened = false;
 		int playerScore = playerCards.getTotalValue(); // Get player score as total of cards he has
 		if (playerScore > 21 && playerCards.getNumAces() > 0) // If player has at least one ace and would otherwise lose (>21), subtract 10
@@ -285,7 +288,7 @@ public class Blackjack {
 
 	}
 
-	public static void stand() { // When stand button is pressed
+	public static void stand() { // 스탠드 버튼을 눌렀을 때
 		if (simpleOutcomes()) // Check for any normal outcomes. If so, we don't need to do anything here so return.
 			return;
 
@@ -327,7 +330,7 @@ public class Blackjack {
 
 	}
 
-	public static void outcomeHappened() { //If something's happened, this round is over. Show the results of round and Continue button
+	public static void outcomeHappened() { //무슨 일이 생기면 이 라운드는 끝납니다. 반올림 결과 표시 및 계속 버튼
 
 		btnHit.setEnabled(false);
 		btnStand.setEnabled(false);
@@ -346,7 +349,7 @@ public class Blackjack {
 
 	}
 
-	public static void acceptOutcome() { // When outcome is reached
+	public static void acceptOutcome() { // 결과 도달 시
 
 		lblInfo.setOpaque(false);
 		lblInfo.setForeground(Color.ORANGE);
@@ -438,13 +441,13 @@ public class Blackjack {
 
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 
-		// Start of program
+		// 프로그램 시작
 		
 		//UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 		
 		
 		
-		initGuiObjects(); // Displays the initial GUI objects to enter an initial balance and start/stop a game
+		initGuiObjects(); // 초기 잔액을 입력하고 게임을 시작/중지하기 위한 초기 GUI 개체를 표시합니다.
 
 		frame.setVisible(true);
 
@@ -453,4 +456,14 @@ public class Blackjack {
 	public static int heightFromWidth(int width) { // 500x726 original size, helper function to get height proportional to width
 		return (int) (1f * width * (380f / 255f));
 	}
+
+	public void start(Stage blackjackStage) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException{
+	    try {
+	    	initGuiObjects();
+	    	frame.setVisible(true);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }

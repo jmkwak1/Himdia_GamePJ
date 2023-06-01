@@ -1,4 +1,4 @@
-package BlackjackMaster;
+package Blackjack;
 import java.util.*; // for ArrayList and Collections
 
 public class CardGroup {

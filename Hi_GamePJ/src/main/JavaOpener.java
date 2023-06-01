@@ -1,27 +1,36 @@
 package main;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import java.awt.Desktop;
-import java.io.File;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import project.Game;
+import Blackjack.Blackjack;
+
 import java.io.IOException;
 
 public class JavaOpener {
-	public void boomOpen() {
-		Button openButton = new Button("Open Java File");
-		openButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override
-		    public void handle(ActionEvent event) {
-		    	try {
-		            // 열고자 하는 Java 파일 경로 설정
-		            File javaFile = new File("project/Game.java");
-		            
-		            // Desktop 클래스를 사용하여 Java 파일 열기
-		            Desktop.getDesktop().open(javaFile);
-		        } catch (IOException e) {
-		            e.printStackTrace();
-		        }
-		    }
-		});
+		
+	public void boomOpen(ActionEvent event) {
+		System.out.println("지뢰찾기 시작");
+		try {
+            Stage gameStage = new Stage();
+            Game game = new Game();
+            game.start(gameStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public void BlackjackOpen(ActionEvent event) {
+		System.out.println("블랙잭 시작");
+		try {
+	        Stage blackjackStage = new Stage();
+	        Blackjack main = new Blackjack();
+	        main.start(blackjackStage);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 }
