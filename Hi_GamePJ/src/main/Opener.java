@@ -1,5 +1,6 @@
 package main;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +20,7 @@ public class Opener {
 	
 	// 메인 화면을 실행하는 기능
 	public void mainOpen() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Select a game.fxml"));
 		
 		Parent menuForm;
 		try {
@@ -50,6 +51,10 @@ public class Opener {
 			e.printStackTrace();
 		}
 	}
+	
+	//지뢰찾기 게임 시작
+
+	
 }
 
 

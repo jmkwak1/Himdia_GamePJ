@@ -46,7 +46,7 @@ public class LoginController implements Initializable{
 		// 회원가입 화면을 새창으로 실행
 		opener.regOpen();
 	}
-
+	
 
 }
 
