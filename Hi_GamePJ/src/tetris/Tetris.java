@@ -1,4 +1,4 @@
-package gameTest;
+package tetris;
 
 import java.util.ArrayList;
 import java.util.Arrays;
