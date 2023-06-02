@@ -83,31 +83,4 @@ public class JavaOpener {
       }
    }
 
-   public void mainOpen() {
-      try {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("mainForm.fxml"));
-         Parent mainForm = loader.load();
-
-         Stage primaryStage = new Stage();
-         primaryStage.setScene(new Scene(mainForm));
-         primaryStage.setTitle("메인 화면");
-         primaryStage.show();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-   }
-
-   public void regOpen() {
-      try {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("registerForm.fxml"));
-         Parent regForm = loader.load();
-
-         Stage regStage = new Stage();
-         regStage.setScene(new Scene(regForm));
-         regStage.setTitle("회원가입");
-         regStage.show();
-      } catch (IOException e) {
-         e.printStackTrace();
-      }
-   }
 }
