@@ -42,7 +42,7 @@
                   <Insets left="35.0" />
                </HBox.margin>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="게시판">
+                  <Button fx:id="board" mnemonicParsing="false" onAction="#boardOpen" prefHeight="30.0" prefWidth="100.0" text="게시판">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -52,7 +52,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="로그아웃">
+                  <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" prefHeight="30.0" prefWidth="100.0" text="로그아웃">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
