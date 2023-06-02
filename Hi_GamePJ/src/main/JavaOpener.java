@@ -73,7 +73,7 @@ public class JavaOpener {
          FXMLLoader loader = new FXMLLoader();
          loader.setLocation(getClass().getResource("loginForm.fxml"));
          Parent boardForm = loader.load();
-
+         
          Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
          primaryStage.setScene(new Scene(boardForm));
          primaryStage.setTitle("로그인 화면");
