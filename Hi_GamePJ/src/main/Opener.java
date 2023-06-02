@@ -50,6 +50,8 @@ public class Opener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 	
 	//지뢰찾기 게임 시작

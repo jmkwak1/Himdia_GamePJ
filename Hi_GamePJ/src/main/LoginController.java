@@ -33,6 +33,8 @@ public class LoginController implements Initializable{
 		System.out.println("로그인 성공여부 : " + Login.getId());
 		if(Login.getId() != null) {
 			opener.mainOpen();
+			
+ 			// opener or mainOpen(); null 어디에 들어가있는 확인
 		}
 	}
 	
