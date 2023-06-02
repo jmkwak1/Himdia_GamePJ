@@ -1,13 +1,17 @@
 package main;
 
+<<<<<<< HEAD
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+=======
+>>>>>>> branch 'main' of https://github.com/jmkwak1/Himedia_GamePJ.git
 import java.net.URL;
 import java.util.ResourceBundle;
 
+<<<<<<< HEAD
 public class LoginController implements Initializable {
     @FXML
     private TextField idFld;
@@ -15,6 +19,12 @@ public class LoginController implements Initializable {
     private PasswordField pwFld;
     private LoginService service;
     private Opener opener;
+=======
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+>>>>>>> branch 'main' of https://github.com/jmkwak1/Himedia_GamePJ.git
 
     public void setOpener(Opener opener) {
         this.opener = opener;
@@ -46,3 +56,8 @@ public class LoginController implements Initializable {
         opener.regOpen();
     }
 }
+
+
+
+
+
