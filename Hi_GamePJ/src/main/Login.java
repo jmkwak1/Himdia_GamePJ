@@ -30,7 +30,4 @@ public class Login {
 	public static void setEmail(String email) {
 		Login.email = email;
 	} 
-	
-	
-	
 }

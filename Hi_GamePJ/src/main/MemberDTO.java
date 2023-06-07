@@ -37,8 +37,4 @@ public class MemberDTO {
 	public void setGold(String gold) {
 		this.gold = gold;
 	}
-	
-	
-	
-	
 }

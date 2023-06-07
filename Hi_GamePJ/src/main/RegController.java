@@ -44,11 +44,3 @@ public class RegController implements Initializable {
 		regStage.close();
 	}
 }
-
-
-
-
-
-
-
-

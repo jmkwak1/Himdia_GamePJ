@@ -13,22 +13,13 @@ public class CommonService {
 		alert.setContentText(contextText);
 		alert.show();
 	}
+
 	public static void windowClose(Stage stage) {
 		stage.close();
 	}
-	
+
 	public static void windowClose(Parent form) {
 		Stage stage = (Stage) form.getScene().getWindow();
 		stage.close();
 	}
 }
-
-
-
-
-
-
-
-
-
-

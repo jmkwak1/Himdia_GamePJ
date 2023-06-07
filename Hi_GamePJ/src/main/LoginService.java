@@ -13,7 +13,6 @@ public class LoginService {
 		if (id == null || id.isEmpty() || pw == null || pw.isEmpty()) {
 	        return;
 	    }
-		
 		// 아이디는 5 ~ 20 
 		if(id.length() <= 2 || id.length() > 20)
 			return;
@@ -30,8 +29,4 @@ public class LoginService {
 	}
 
 }
-
-
-
-
 
