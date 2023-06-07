@@ -22,19 +22,23 @@ public class MemberDAO {
 		}
 	}
 	
-	public String login(String id) {
-		String sql = "SELECT pw FROM higame WHERE id=?";
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setString(1, id);
-			rs = ps.executeQuery();
-			if(rs.next()) {
-				return rs.getString("pw");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+	public MemberDTO login(String id) {
+		String sql = "SELECT pw, gold FROM higame WHERE id=?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                MemberDTO member = new MemberDTO();
+                member.setId(id);
+                member.setPw(rs.getString("pw"));
+                member.setGold(rs.getString("gold"));
+                return member;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
 		}
 		return null;
 	}

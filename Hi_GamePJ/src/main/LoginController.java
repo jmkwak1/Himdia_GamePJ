@@ -30,6 +30,7 @@ public class LoginController implements Initializable {
         service.login(idFld.getText(), pwFld.getText());
         // 로그인 성공이라면 메인 화면을 열고, 로그인 실패라면 아무 작업도 수행하지 않음
         System.out.println("로그인 성공여부 : " + Login.getId());
+        System.out.println(Login.getId() + " gold : " + Login.getGold());
         if (Login.getId() != null) {
             opener.mainOpen();
         }
@@ -45,8 +46,4 @@ public class LoginController implements Initializable {
         // 회원가입 화면을 열기 위해 Opener 객체의 메서드를 호출
         opener.regOpen();
     }
-
-//    public void logoutProc() {
-//        opener.logout(); // 로그아웃 기능 실행
-//    }
 }
