@@ -16,7 +16,7 @@ public class Main extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginForm.fxml"));
 		
-		Parent form = loader.load();
+		Parent form = loader.load(); 
 		
 		// fxml에 지정된 Controller의 참조값을 반환
 		LoginController loginCon = loader.getController();
