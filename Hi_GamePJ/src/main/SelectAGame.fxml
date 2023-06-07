@@ -24,7 +24,10 @@
                         <Font size="25.0" />
                      </font>
                   </Text>
-                  <Label prefHeight="25.0" prefWidth="115.0" />
+                  <Label fx:id="gold" prefHeight="25.0" prefWidth="115.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
                </children>
                <HBox.margin>
                   <Insets />

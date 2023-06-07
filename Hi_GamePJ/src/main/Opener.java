@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class Opener {
@@ -25,9 +26,12 @@ public class Opener {
 		Parent menuForm;
 		try {
 			menuForm = loader.load();
+			Label gold = (Label)menuForm.lookup("#gold");	//label:id인 gold값을 지정
+			gold.setText(Login.getGold());			//gold값에 해당하는 값을 입력
 			primaryStage.setScene(new Scene(menuForm));
 			primaryStage.setTitle("메인 화면");
 			primaryStage.show();
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
