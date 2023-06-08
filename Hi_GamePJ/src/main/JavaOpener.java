@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import project.Game;
 import Blackjack.Blackjack;
@@ -18,7 +20,7 @@ import java.io.IOException;
 public class JavaOpener{
 	
     private Stage primaryStage; // primaryStage 필드 추가
-
+    
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
@@ -78,6 +80,9 @@ public class JavaOpener{
         stage.close();
         // Main.java 파일 실행
         try {
+        	Login.setId(null);
+        	Login.setPw(null);
+        	Login.setGold(null);
             Stage mainStage = new Stage();
             Main main = new Main();
             main.start(mainStage);

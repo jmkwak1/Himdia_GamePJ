@@ -26,7 +26,8 @@ public class Blackjack {
 	private static int betAmount = 0, roundCount = 0; // 플레이어가 베팅한 금액과 라운드 수
 
 	// 윈도우 빌더에서 GUI 요소 생성
-	private static JTextField tfBalance;
+	private static JLabel tfBalance;
+	private static JTextField tfBalance2;
 	private static JLabel lblInitialBalance;
 	private static JButton btnNewGame;
 	private static JButton btnEndGame;
@@ -79,13 +80,14 @@ public class Blackjack {
 		});
 		frame.getContentPane().add(btnEndGame);
 
-		tfBalance = new JTextField(); // 초기 잔액을 저장하는 텍스트 필드
+		tfBalance = new JLabel(); // 초기 잔액을 저장하는 텍스트 필드
 		tfBalance.setText(Login.getGold());
+		tfBalance.setFont(new Font("굴림", Font.BOLD, 15));
 		tfBalance.setBounds(131, 580, 89, 28);
 		frame.getContentPane().add(tfBalance);
-		tfBalance.setColumns(10);
+//		tfBalance.setColumns(10);
 
-		lblInitialBalance = new JLabel(" 소지 금액 : "); // 초기 잔액 레이블
+		lblInitialBalance = new JLabel(" 시작 금액 : "); // 초기 잔액 레이블
 		lblInitialBalance.setFont(new Font("굴림", Font.BOLD, 13));
 		lblInitialBalance.setForeground(Color.WHITE);
 		lblInitialBalance.setBounds(30, 586, 100, 18);
