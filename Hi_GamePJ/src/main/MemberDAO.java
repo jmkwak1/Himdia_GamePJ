@@ -23,25 +23,25 @@ public class MemberDAO {
 	}
 	
 	public MemberDTO login(String id) {
-		String sql = "SELECT pw, gold FROM higame WHERE id=?";
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, id);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                MemberDTO member = new MemberDTO();
-                member.setId(id);
-                member.setPw(rs.getString("pw"));
-                member.setGold(rs.getString("gold"));
-                return member;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-		}
-		return null;
-	}
+	      String sql = "SELECT pw, gold FROM higame WHERE id=?";
+	        PreparedStatement ps = null;
+	        ResultSet rs = null;
+	        try {
+	            ps = con.prepareStatement(sql);
+	            ps.setString(1, id);
+	            rs = ps.executeQuery();
+	            if (rs.next()) {
+	                MemberDTO member = new MemberDTO();
+	                member.setId(id);
+	                member.setPw(rs.getString("pw"));
+	                member.setGold(Integer.parseInt(rs.getString("gold"))); // String을 int로 변환하여 전달
+	                return member;
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	      }
+	      return null;
+	   }
 	
 	public void insert(String id, String pw, String name, String email) {
 		String sql = "INSERT INTO higame (id, pw, name, email) VALUES(?,?,?,?)";

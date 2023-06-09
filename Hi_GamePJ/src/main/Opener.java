@@ -20,22 +20,31 @@ public class Opener {
 	}
 	
 	// 메인 화면을 실행하는 기능
-	public void mainOpen() {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectAgame.fxml"));
-		
-		Parent menuForm;
-		try {
-			menuForm = loader.load();
-			Label gold = (Label)menuForm.lookup("#gold");	//label:id인 gold값을 지정
-			gold.setText(Login.getGold());			//gold값에 해당하는 값을 입력
-			primaryStage.setScene(new Scene(menuForm));
-			primaryStage.setTitle("메인 화면");
-			primaryStage.show();
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	   public void mainOpen() {
+	       FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectAgame.fxml"));
+
+	       Parent menuForm;
+	       try {
+	           menuForm = loader.load();
+	           Label gold = (Label) menuForm.lookup("#gold");    // label:id인 gold값을 지정
+	           gold.setText(String.valueOf(Login.getGold()));   // gold값에 해당하는 값을 문자열로 변환하여 입력
+	           primaryStage.setScene(new Scene(menuForm));
+	           primaryStage.setTitle("메인 화면");
+
+	           // 게임 종료 이벤트 핸들러
+	           primaryStage.setOnCloseRequest(event -> {
+	               // 게임 종료 후 gold 값을 저장
+	               String id = Login.getId(); // 로그인한 아이디 가져오기
+	               int goldValue = Integer.parseInt(gold.getText()); // Label에서 gold 값 가져오기
+//	               ScoreDAO scoreDAO = new ScoreDAO();
+//	               scoreDAO.saveScore(id, goldValue); // gold 값을 저장
+	           });
+
+	           primaryStage.show();
+	       } catch (Exception e) {
+	           e.printStackTrace();
+	       }
+	   }
 	
 	// 회원가입 화면을 실행하는 기능
 	public void regOpen() {

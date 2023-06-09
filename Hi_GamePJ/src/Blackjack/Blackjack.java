@@ -81,7 +81,7 @@ public class Blackjack {
 		frame.getContentPane().add(btnEndGame);
 
 		tfBalance = new JLabel(); // 초기 잔액을 저장하는 텍스트 필드
-		tfBalance.setText(Login.getGold());
+		tfBalance.setText(Integer.toString(Login.getGold()));
 		tfBalance.setFont(new Font("굴림", Font.BOLD, 15));
 		tfBalance.setBounds(131, 580, 89, 28);
 		frame.getContentPane().add(tfBalance);

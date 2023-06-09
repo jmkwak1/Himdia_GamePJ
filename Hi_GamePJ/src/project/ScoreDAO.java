@@ -10,7 +10,7 @@ public class ScoreDAO {
     private static final String user = "oracle"; // 데이터베이스 사용자 이름
     private static final String password = "oracle"; // 데이터베이스 비밀번호
 
-    public static void saveScore(int score) {
+    public static void saveScore(String id, int score) {
         String sql = "INSERT INTO higame(score) VALUES (?)"; // 쿼리문
 
         try (Connection conn = DriverManager.getConnection(url, user, password);

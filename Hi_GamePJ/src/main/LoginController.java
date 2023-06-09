@@ -4,17 +4,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import project.ScoreDAO;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    @FXML
+    @FXML   
     private TextField idFld;
     @FXML
     private PasswordField pwFld;
     private LoginService service;
     private Opener opener;
+    private ScoreDAO scoreDAO;
 
     public void setOpener(Opener opener) {
         this.opener = opener;
@@ -23,6 +25,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         service = new LoginService();
+        scoreDAO = new ScoreDAO();
     }
 
     // 로그인 버튼을 클릭하면 동작하는 메서드
@@ -33,6 +36,11 @@ public class LoginController implements Initializable {
         System.out.println(Login.getId() + " gold : " + Login.getGold());
         if (Login.getId() != null) {
             opener.mainOpen();
+            
+            // gold 값을 저장
+            String id = Login.getId(); // 로그인한 아이디 가져오기
+            int goldValue = Login.getGold(); // 로그인한 사용자의 gold 값 가져오기
+            scoreDAO.saveScore(id, goldValue);
         }
     }
 

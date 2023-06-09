@@ -5,7 +5,7 @@ public class Login {
 	private static String pw;
 	private static String name;
 	private static String email;
-	private static String gold;
+	private static int gold;
 	
 	public static String getId() {
 		return id;
@@ -31,10 +31,10 @@ public class Login {
 	public static void setEmail(String email) {
 		Login.email = email;
 	}
-	public static String getGold() {
+	public static int getGold() {
 		return gold;
 	}
-	public static void setGold(String gold) {
+	public static void setGold(int gold) {
 		Login.gold = gold;
 	} 
 	

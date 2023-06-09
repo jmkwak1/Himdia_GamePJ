@@ -5,7 +5,7 @@ public class MemberDTO {
 	private String pw;
 	private String name;
 	private String email;
-	private String gold;
+	private int gold;
 	
 	public String getId() {
 		return id;
@@ -31,10 +31,10 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getGold() {
+	public int getGold() {
 		return gold;
 	}
-	public void setGold(String gold) {
+	public void setGold(int gold) {
 		this.gold = gold;
 	}
 }
