@@ -13,26 +13,37 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main.Login;
+import main.MemberDAO;
+import project.ScoreDAO;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class Game extends Application {
 
     private static final int ROW = 10;
     private static final int COL = 10;
-    private static final int MINE_CNT = 10; 
+    private static final int MINE_CNT = 10;
     private static final String MINE = "*";
     private static final String NONE = " ";
     private String mineArr[][] = null;
     private boolean gameOver = false;
-    private int score = 0;
-    private Label scoreLabel;
+    private int score;
+    private Label goldLabel;
     private int clickedRow = -1;
     private int clickedCol = -1;
     private GridPane gridPane;
-    private Button restartButton; // 게임 재시작을 위한 버튼
+    private Button restartButton;
+    private ScoreDAO scoreDAO; // ScoreDAO 인스턴스 추가
+    private MemberDAO memberDAO; // MemberDAO 인스턴스 추가
 
     public void start(Stage primaryStage) {
+        scoreDAO = new ScoreDAO(); // ScoreDAO 인스턴스 생성
+        memberDAO = new MemberDAO(); // MemberDAO 인스턴스 생성
+
+        // 현재 사용자의 아이디 가져오기
+
         gridPane = createGridPane();
 
         setInit();
@@ -46,22 +57,21 @@ public class Game extends Application {
             }
         }
 
-        scoreLabel = new Label("Gold: 0");
-        scoreLabel.setStyle("-fx-font-size: 16px;");
+        goldLabel = new Label("Gold: 0");
+        goldLabel.setStyle("-fx-font-size: 16px;");
 
-        restartButton = new Button("재시작"); // 게임 재시작을 위한 버튼 생성
-        restartButton.setOnAction(event -> restartGame()); // 버튼 클릭 시 재시작 메서드 호출
+        restartButton = new Button("저장 및 재시작");
+        restartButton.setOnAction(event -> restartGame());
 
-        HBox scoreBox = new HBox(scoreLabel);
-        scoreBox.setAlignment(Pos.CENTER_LEFT);
+        HBox goldBox = new HBox(goldLabel);
+        goldBox.setAlignment(Pos.CENTER_LEFT);
 
         HBox restartBox = new HBox(restartButton);
         restartBox.setAlignment(Pos.CENTER_RIGHT);
 
-        HBox hbox = new HBox(scoreBox, restartBox);
+        HBox hbox = new HBox(goldBox, restartBox);
         hbox.setSpacing(20);
 
-        // 재시작 버튼을 오른쪽 끝에 고정
         HBox.setHgrow(restartBox, Priority.ALWAYS);
 
         VBox vbox = new VBox(hbox, gridPane);
@@ -120,7 +130,7 @@ public class Game extends Application {
                     button.setText(value);
                     button.setDisable(true);
                     score += 10;
-                    scoreLabel.setText("Gold: " + score);
+                    goldLabel.setText("Gold: " + score);
                 }
             } else if (button.isDisabled()) {
                 button.setDisable(false);
@@ -207,13 +217,10 @@ public class Game extends Application {
 
     private void restartGame() {
         gameOver = false;
-        score = 0;
-        scoreLabel.setText("Gold: " + score);
+        goldLabel.setText("Gold: " + score);
         clickedRow = -1;
         clickedCol = -1;
-        
-        
-        gridPane.getChildren().clear();
+
         setInit();
         setMine(MINE_CNT);
         setCellValues();
@@ -224,6 +231,15 @@ public class Game extends Application {
                 gridPane.add(cellButton, col, row);
             }
         }
+
+        // 게임 종료 후 gold 값을 저장
+        scoreDAO.saveScore(Login.getId(), score); // ScoreDAO를 사용하여 gold 값을 저장
+
+        // gold 값을 저장한 후에 게임 종료를 알리는 메시지를 표시
+        showAlert("게임 종료", "게임이 종료되었습니다. 저장되었습니다.");
+
+        score = Login.getGold(); // gold 값을 초기화하여 다음 게임에 영향을 주지 않도록 함
+        goldLabel.setText("Gold: " + score);
     }
 
     public static void main(String[] args) {

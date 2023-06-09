@@ -34,7 +34,7 @@ public class MemberDAO {
                 MemberDTO member = new MemberDTO();
                 member.setId(id);
                 member.setPw(rs.getString("pw"));
-                member.setGold(rs.getString("gold"));
+                member.setGold(Integer.parseInt(rs.getString("gold"))); // String을 int로 변환하여 전달
                 return member;
             }
         } catch (Exception e) {

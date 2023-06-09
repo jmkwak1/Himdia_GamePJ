@@ -27,7 +27,7 @@ public class Opener {
 		try {
 			menuForm = loader.load();
 			Label gold = (Label)menuForm.lookup("#gold");	//label:id인 gold값을 지정
-			gold.setText(Login.getGold());			//gold값에 해당하는 값을 입력
+			gold.setText(String.valueOf(Login.getGold()));   // gold값에 해당하는 값을 문자열로 변환하여 입력
 			primaryStage.setScene(new Scene(menuForm));
 			primaryStage.setTitle("메인 화면");
 			primaryStage.show();
