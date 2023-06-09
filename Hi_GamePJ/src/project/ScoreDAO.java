@@ -40,7 +40,7 @@ public class ScoreDAO {
 
         try {
             int newGold = member.getGold() + score; // 기존 gold 값에 score를 더한 새로운 gold 값 계산
-
+            
             String updateQuery = "UPDATE higame SET gold = ? WHERE id = ?";
             PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
             updateStatement.setInt(1, newGold);
