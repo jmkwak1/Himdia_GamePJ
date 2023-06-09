@@ -82,7 +82,7 @@ public class JavaOpener{
         try {
         	Login.setId(null);
         	Login.setPw(null);
-//        	Login.setGold(null);
+        	Login.setGold(0);
             Stage mainStage = new Stage();
             Main main = new Main();
             main.start(mainStage);
