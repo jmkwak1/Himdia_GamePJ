@@ -220,7 +220,7 @@ public class Game extends Application {
         goldLabel.setText("Gold: " + score);
         clickedRow = -1;
         clickedCol = -1;
-
+        
         setInit();
         setMine(MINE_CNT);
         setCellValues();

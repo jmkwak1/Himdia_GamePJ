@@ -39,10 +39,13 @@ public class ScoreDAO {
         MemberDTO member = memberDAO.login(id);
 
         try {
+        	
             int newGold = member.getGold() + score; // 기존 gold 값에 score를 더한 새로운 gold 값 계산
             
             String updateQuery = "UPDATE higame SET gold = ? WHERE id = ?";
+            
             PreparedStatement updateStatement = connection.prepareStatement(updateQuery);
+            
             updateStatement.setInt(1, newGold);
             updateStatement.setString(2, id);
             updateStatement.executeUpdate();
@@ -53,6 +56,6 @@ public class ScoreDAO {
             e.printStackTrace();
             System.out.println("데이터베이스 오류: " + e.getMessage());
         }
-         score = 0;
+         
     }
 }
