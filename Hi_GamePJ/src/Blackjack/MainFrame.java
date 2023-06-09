@@ -7,7 +7,7 @@ import javafx.application.Platform;
 
 public class MainFrame extends JFrame {
 	
-	//The main window, displays the background image (note the dynamic boundaries are so the image stretches nicely for a given window size)
+	//기본 창은 배경 이미지를 표시합니다(주어진 창 크기에 맞게 이미지가 잘 늘어나도록 동적 경계에 유의하십시오).
 
 	public MainFrame() {
 		setTitle("Blackjack");

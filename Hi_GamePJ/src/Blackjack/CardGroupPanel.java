@@ -11,9 +11,9 @@ import javax.swing.SwingConstants;
 
 class CardGroupPanel extends JPanel {
 	
-	// This class extends JPanel, and will create a panel which displays the images of a number of cards,
-	// stored in an instance of CardGroup, next to each other. Additionally the card total is displayed using standard Ace subtraction rule.
-
+	// 이 클래스는 JPanel을 확장하고 여러 카드의 이미지를 표시하는 패널을 만듭니다.
+	// 서로 옆에 있는 CardGroup의 인스턴스에 저장됩니다. 또한 카드 합계는 표준 Ace 빼기 규칙을 사용하여 표시됩니다.
+	
 	CardGroupPanel(CardGroup cardGroup, int left, int top, int width, int height, int gap) {
 
 		int numCards = cardGroup.cards.size();
