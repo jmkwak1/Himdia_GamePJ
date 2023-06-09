@@ -86,6 +86,7 @@ public class Blackjack {
 		tfBalance.setBounds(131, 580, 89, 28);
 		frame.getContentPane().add(tfBalance);
 //		tfBalance.setColumns(10);
+		
 
 		lblInitialBalance = new JLabel(" 시작 금액 : "); // 초기 잔액 레이블
 		lblInitialBalance.setFont(new Font("굴림", Font.BOLD, 13));
