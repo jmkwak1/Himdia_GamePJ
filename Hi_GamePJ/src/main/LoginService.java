@@ -23,7 +23,6 @@ public class LoginService {
             Login.setId(id);
             Login.setGold(member.getGold());
             CommonService.msg("로그인 성공");
-            System.out.println("gold : " + member.getGold());
         } else {
             // 아이디 또는 비밀번호가 틀렸습니다.
             CommonService.msg("아이디 또는 비밀번호가 틀렸습니다.");

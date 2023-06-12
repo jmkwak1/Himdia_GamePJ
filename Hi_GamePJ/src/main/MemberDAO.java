@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import Blackjack.Blackjack;
+
 public class MemberDAO {
 	private Connection con;
 	
@@ -57,5 +59,19 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void BJGold(String id, double gold) {
+        String sql = "UPDATE higame SET gold = ? WHERE id = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, (int) gold);
+            ps.setString(2, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -2,10 +2,7 @@ package Blackjack;
 
 import javax.swing.*;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.util.Timer;
@@ -17,7 +14,6 @@ import java.awt.event.ActionEvent;
 
 import main.Login;
 import main.MemberDAO;
-import main.Opener;
 
 public class Blackjack {
 	private static JFrame frame = new MainFrame(); // MainFrame 클래스의 인스턴스 생성.
@@ -26,12 +22,11 @@ public class Blackjack {
 	private static CardGroupPanel dealerCardPanel = null, playerCardPanel = null; // 카드 덱, 딜러 카드, 플레이어 카드, 플레이어 및 딜러 카드용 패널
 	private static Card dealerHiddenCard; //  그리고 딜러의 히든카드
 
-	private static int balance = 0; // 잔액의 초기 금액 설정
+	private static double balance = 0; // 잔액의 초기 금액 설정
 	private static int betAmount = 0, roundCount = 0; // 플레이어가 베팅한 금액과 라운드 수
 
 	// 윈도우 빌더에서 GUI 요소 생성
 	private static JLabel tfBalance;
-	private static JTextField tfBalance2;
 	private static JLabel lblInitialBalance;
 	private static JButton btnNewGame;
 	private static JButton btnEndGame;
@@ -49,15 +44,6 @@ public class Blackjack {
 	private static JLabel lblInfo;
 	private static JButton btnContinue;
 	private static JLabel lblShuffleInfo = null;
-	
-//	private static Stage primaryStage;
-//	public void setPrimaryStage(Stage primaryStage) {
-//		this.primaryStage = primaryStage;
-//	}
-//	public Stage getPrimaryStage() {
-//		return primaryStage;
-//	}
-	
 
 	public static boolean isValidAmount(String s) { // 이는 초기 잔액과 플레이어의 내기에 입력한 값이 자연수임을 확인하기 위한 것입니다.
 		try {
@@ -89,22 +75,7 @@ public class Blackjack {
 				frame.getContentPane().removeAll(); // 화면에서 모든 개체 제거
 				frame.repaint(); // 업데이트를 표시하도록 다시 그리기
 				initGuiObjects(); // 게임 로직을 다시 시작하고 New Game 메뉴를 표시합니다.
-//				System.exit(0);
-//				
-//				FXMLLoader loader = new FXMLLoader(getClass().getResource("SelectAgame.fxml"));
-//				
-//				Parent menuForm;
-//				try {
-//					menuForm = loader.load();
-//					Label gold = (Label)menuForm.lookup("#gold");	//label:id인 gold값을 지정
-//					gold.setText(Login.getGold());			//gold값에 해당하는 값을 입력
-//					primaryStage.setScene(new Scene(menuForm));
-//					primaryStage.setTitle("메인 화면");
-//					primaryStage.show();
-//				
-//				} catch (Exception e2) {
-//					e2.printStackTrace();
-//				}
+				System.exit(0);
 			}
 		});
 		frame.getContentPane().add(btnEndGame);
@@ -116,7 +87,7 @@ public class Blackjack {
 		frame.getContentPane().add(tfBalance);
 //		tfBalance.setColumns(10);
 
-		lblInitialBalance = new JLabel(" 시작 금액 : "); // 초기 잔액 레이블
+		lblInitialBalance = new JLabel(" 소지 금액 : "); // 초기 잔액 레이블
 		lblInitialBalance.setFont(new Font("굴림", Font.BOLD, 13));
 		lblInitialBalance.setForeground(Color.WHITE);
 		lblInitialBalance.setBounds(30, 586, 100, 18);
@@ -129,13 +100,13 @@ public class Blackjack {
 
 		lblCurrentBalance = new JLabel("현재 금액:"); // 현재 잔액 레이블
 		lblCurrentBalance.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCurrentBalance.setFont(new Font("굴림", Font.ITALIC, 16));
+		lblCurrentBalance.setFont(new Font("굴림", Font.BOLD, 16));
 		lblCurrentBalance.setForeground(Color.WHITE);
 		lblCurrentBalance.setBounds(315, 578, 272, 22);
 		frame.getContentPane().add(lblCurrentBalance);
 
 		lblBalanceAmount = new JLabel(); // 잔액 레이블, 현재 잔액 표시
-		lblBalanceAmount.setText(String.format("$%d", balance));
+		lblBalanceAmount.setText(String.format("$%.0f", balance));
 		lblBalanceAmount.setForeground(Color.ORANGE);
 		lblBalanceAmount.setFont(new Font("굴림", Font.BOLD, 40));
 		lblBalanceAmount.setHorizontalAlignment(SwingConstants.CENTER);
@@ -200,7 +171,7 @@ public class Blackjack {
 		}
 		balance -= betAmount; // 잔액에서 베팅 빼기
 
-		lblBalanceAmount.setText(String.format("$%d", balance));
+		lblBalanceAmount.setText(String.format("$%.0f", balance));
 
 		tfBetAmount.setEnabled(false);
 		btnDeal.setEnabled(false);
@@ -302,15 +273,18 @@ public class Blackjack {
 			if (dealerCards.getTotalValue() == 21) { // 플레이어와 딜러가 블랙잭인 경우
 				lblInfo.setText("무승부!"); // 무승부처리
 				balance += betAmount; // 플레이어 배팅한 금액 되돌려주기
-				Login.setGold(balance);
 			} else {
 				// 플레이어만 블랙잭일 경우
-				lblInfo.setText(String.format("플레이어 블랙잭! Win 금액: $%d", 1.5d * betAmount));
-				balance += 2.5d * betAmount; // 베팅한 금액 * 2.5 받음
-				Login.setGold(balance);
+				lblInfo.setText(String.format("플레이어 블랙잭! Win 금액: $%.0f", 1.5f * betAmount));
+				balance += 2.5f * betAmount; // 베팅한 금액 * 2.5 받음
 			}
-			lblBalanceAmount.setText(String.format("$%.2d", balance)); // 새로운 잔액 표시
-			Login.setGold(balance);
+			// 게임 결과 출력 후 업데이트
+			String playerId = Login.getId(); // 현재 로그인한 사용자의 ID 가져오기
+			MemberDAO memberDAO = new MemberDAO();
+			memberDAO.BJGold(playerId, balance); // 게임 결과를 데이터베이스의 gold 열에 업데이트
+			
+			lblBalanceAmount.setText(String.format("$%.0f", balance)); // 새로운 잔액 표시
+
 			outcomeHasHappened = true;
 			outcomeHappened(); // 라운드가 끝나고 배팅금액 반올림처리 및 결과표시, 계속버튼
 		} else if (playerScore > 21) { // 플레이어 Bust(숫자 합이 21이 넘을때 터짐)
@@ -319,9 +293,11 @@ public class Blackjack {
 			updateCardPanels();
 			outcomeHasHappened = true;
 			outcomeHappened(); // 라운드가 끝나고 배팅금액 반올림처리 및 결과표시, 계속버튼
-			Login.setGold(balance);
 		}
-		Login.setGold(balance);
+		// 게임 결과 출력 후 업데이트
+		String playerId = Login.getId(); // 현재 로그인한 사용자의 ID 가져오기
+		MemberDAO memberDAO = new MemberDAO();
+		memberDAO.BJGold(playerId, balance); // 게임 결과를 데이터베이스의 gold 열에 업데이트
 		return outcomeHasHappened;
 
 	}
@@ -350,25 +326,24 @@ public class Blackjack {
 		if (playerScore > dealerScore) { // Player wins
 			lblInfo.setText("플레이어 Victor! Win 금액 : $" + betAmount);
 			balance += betAmount * 2;
-			lblBalanceAmount.setText(String.format("$%d", balance));
-			Login.setGold(balance);
+			lblBalanceAmount.setText(String.format("$%.0f", balance));
 		} else if (dealerScore == 21) { // Dealer blackjack
 			lblInfo.setText("딜러가 블랙잭! Loss: -$" + betAmount);
-			Login.setGold(balance);
 		} else if (dealerScore > 21) { // Dealer bust
 			lblInfo.setText("딜러 Bust! Win 금액 : $" + betAmount);
 			balance += betAmount * 2;
-			lblBalanceAmount.setText(String.format("$%d", balance));
-			Login.setGold(balance);
+			lblBalanceAmount.setText(String.format("$%.0f", balance));
 		} else if (playerScore == dealerScore) { // Push
 			lblInfo.setText("무승부!");
 			balance += betAmount;
-			lblBalanceAmount.setText(String.format("$%d", balance));
-			Login.setGold(balance);
+			lblBalanceAmount.setText(String.format("$%.0f", balance));
 		} else { // Otherwise - dealer wins
 			lblInfo.setText("딜러 Victor! Loss : -$" + betAmount);
-			Login.setGold(balance);
 		}
+		// 게임 결과 출력 후 업데이트
+		String playerId = Login.getId(); // 현재 로그인한 사용자의 ID 가져오기
+		MemberDAO memberDAO = new MemberDAO();
+		memberDAO.BJGold(playerId, balance); // 게임 결과를 데이터베이스의 gold 열에 업데이트
 		outcomeHappened(); // 라운드가 끝나고 배팅금액 반올림처리 및 결과표시, 계속버튼
 
 	}
@@ -415,12 +390,11 @@ public class Blackjack {
 		frame.repaint();
 
 		if (balance <= 0) { // 자금이 부족하면 충전하거나 게임을 종료하십시오.
-			int choice = JOptionPane.showOptionDialog(null, "자금이 부족합니다. 자금을 추가 하려면 다른 게임을 통해 버시거나 무료로 $50를 추가하려면 예를 누르고 현재 게임을 종료하려면 아니오를 누르세요.", "자금 부족", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+			int choice = JOptionPane.showOptionDialog(null, "자금이 부족합니다. $50를 추가하려면 예를 누르고 현재 게임을 종료하려면 아니오를 누르세요.", "자금 부족", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
 
 			if (choice == JOptionPane.YES_OPTION) {
 				balance += 50;
-				lblBalanceAmount.setText(String.format("$%d", balance));
-				Login.setGold(balance);
+				lblBalanceAmount.setText(String.format("$%.0f", balance));
 			} else {
 				frame.getContentPane().removeAll();
 				frame.repaint();
@@ -493,7 +467,8 @@ public class Blackjack {
 		
 		initGuiObjects(); // 초기 잔액을 입력하고 게임을 시작/중지하기 위한 초기 GUI 개체를 표시합니다.
 
-//		frame.setVisible(true);
+		frame.setVisible(true);
+
 	}
 
 	public static int heightFromWidth(int width) { // 500x726 원본 크기, 너비에 비례하여 높이를 구하는 도우미 기능
