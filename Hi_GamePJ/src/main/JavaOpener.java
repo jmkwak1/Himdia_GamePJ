@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -71,6 +72,34 @@ public class JavaOpener{
             e.printStackTrace();
         }
     }
+    
+    public void MyPageOpen() throws IOException {
+	       FXMLLoader loader = new FXMLLoader(getClass().getResource("MyPage.fxml"));
+	       
+	       Stage MyPageStage = new Stage();
+	       Parent menuForm = loader.load();
+	       
+	       try {
+	           Label MyID = (Label) menuForm.lookup("#MyID");    // label:id인 MyID값을 지정
+	           MyID.setText(String.valueOf(Login.getId()));   // gold값에 해당하는 값을 문자열로 변환하여 입력
+	           
+	           Label MyName = (Label) menuForm.lookup("#MyName");    // label:id인 MyName값을 지정
+	           MyName.setText(String.valueOf(Login.getName()));
+	           
+	           Label MyEmail = (Label) menuForm.lookup("#MyEmail");    // label:id인 MyEmail값을 지정
+	           MyEmail.setText(String.valueOf(Login.getEmail()));
+	           
+	           Label gold = (Label) menuForm.lookup("#MyGold");    // label:id인 MyGold값을 지정
+	           gold.setText(String.valueOf(Login.getGold()));
+	           
+	           MyPageStage.setScene(new Scene(menuForm));
+	           MyPageStage.setTitle("내 정보");
+
+	           MyPageStage.show();
+	       } catch (Exception e) {
+	           e.printStackTrace();
+	       }
+	   }
 
     // 로그아웃 버튼 클릭 이벤트 핸들러
     @FXML
