@@ -45,15 +45,17 @@ public class MemberDAO {
 	      return null;
 	   }
 	
-	public void insert(String id, String pw, String name, String email) {
-		String sql = "INSERT INTO higame (id, pw, name, email) VALUES(?,?,?,?)";
+	public void insert(String id, String pw, String name, String email, int gold) {
+		String sql = "INSERT INTO higame (id, pw, name, email) VALUES(?,?,?,?,?)";
 		PreparedStatement ps = null;
+		Login.setGold(100);
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, pw);
 			ps.setString(3, name);
 			ps.setString(4, email);
+			ps.setInt(5, gold);
 			ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

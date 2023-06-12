@@ -28,7 +28,7 @@ public class RegService {
 			if (idFld.getText().isEmpty() == false) {
 				TextField nameFld = (TextField) regForm.lookup("#name");//이름
 
-				memberDao.insert(idFld.getText(), pwFld.getText(), nameFld.getText(), emailFld.getText());
+				memberDao.insert(idFld.getText(), pwFld.getText(), nameFld.getText(), emailFld.getText(), 100);
 				CommonService.windowClose(regForm);
 			} else {
 				CommonService.msg("아이디를 입력하고 다시 시도하세요.");
