@@ -78,4 +78,27 @@ public class MemberDAO {
             e.printStackTrace();
         }
     }
+    
+    public int getGold(String id) {
+        String sql = "SELECT gold FROM higame WHERE id=?";
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int goldValue = 0;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+            	MemberDTO member = new MemberDTO();
+                goldValue = rs.getInt("gold");
+                member.setGold(rs.getInt("gold"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return goldValue;
+    }
 }

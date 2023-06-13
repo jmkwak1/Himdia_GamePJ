@@ -79,6 +79,9 @@ public class JavaOpener{
 	       Parent menuForm = loader.load();
 	       
 	       try {
+	    	   MemberDAO memberDAO = new MemberDAO();
+	    	   MemberDTO member = new MemberDTO();
+	    	   int newGold = memberDAO.getGold(Login.getId());
 	           Label MyID = (Label) menuForm.lookup("#MyID");    // label:id인 MyID값을 지정
 	           MyID.setText(String.valueOf(Login.getId()));   // gold값에 해당하는 값을 문자열로 변환하여 입력
 	           
@@ -89,7 +92,7 @@ public class JavaOpener{
 	           MyEmail.setText(String.valueOf(Login.getEmail()));
 	           
 	           Label gold = (Label) menuForm.lookup("#MyGold");    // label:id인 MyGold값을 지정
-	           gold.setText(String.valueOf(Login.getGold()));
+	           gold.setText(String.valueOf(newGold));
 	           
 	           MyPageStage.setScene(new Scene(menuForm));
 	           MyPageStage.setTitle("내 정보");
@@ -117,4 +120,13 @@ public class JavaOpener{
             e.printStackTrace();
         }
     }
+    @FXML private Label gold;
+    public void refresh(ActionEvent event) {
+        // gold 값을 가져와서 Login 클래스의 setGold() 메서드를 사용하여 갱신
+        MemberDAO memberDAO = new MemberDAO();
+        int newGold = memberDAO.getGold(Login.getId());
+        gold.setText(newGold+"");
+      
+    }
+
 }

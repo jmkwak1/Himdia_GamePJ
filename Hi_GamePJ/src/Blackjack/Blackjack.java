@@ -58,6 +58,9 @@ public class Blackjack {
 
 	// 이 기능은 프로그램이 시작되거나 게임이 종료될 때 실행됩니다. 초기 잔액을 입력하고 게임을 시작/중지하기 위한 초기 GUI 개체를 표시합니다.
 	public static void initGuiObjects() {
+		MemberDAO memberDAO = new MemberDAO();
+		int newGold = memberDAO.getGold(Login.getId());
+		
 		btnNewGame = new JButton("게임 시작"); // 새로운 게임 버튼
 		btnNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,7 +84,7 @@ public class Blackjack {
 		frame.getContentPane().add(btnEndGame);
 
 		tfBalance = new JLabel(); // 초기 잔액을 저장하는 텍스트 필드
-		tfBalance.setText(Integer.toString(Login.getGold()));
+		tfBalance.setText(Integer.toString(newGold));
 		tfBalance.setFont(new Font("굴림", Font.BOLD, 15));
 		tfBalance.setBounds(131, 580, 89, 28);
 		frame.getContentPane().add(tfBalance);
