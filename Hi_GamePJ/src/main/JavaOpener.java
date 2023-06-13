@@ -75,7 +75,6 @@ public class JavaOpener{
     
     public void MyPageOpen() throws IOException {
 	       FXMLLoader loader = new FXMLLoader(getClass().getResource("MyPage.fxml"));
-	       
 	       Stage MyPageStage = new Stage();
 	       Parent menuForm = loader.load();
 	       
@@ -94,7 +93,6 @@ public class JavaOpener{
 	           
 	           MyPageStage.setScene(new Scene(menuForm));
 	           MyPageStage.setTitle("내 정보");
-
 	           MyPageStage.show();
 	       } catch (Exception e) {
 	           e.printStackTrace();

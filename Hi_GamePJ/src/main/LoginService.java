@@ -20,7 +20,9 @@ public class LoginService {
         MemberDTO member = memberDao.login(id);
         if (member != null && member.getPw().equals(pw)) {
             // 로그인 성공
-            Login.setId(id);
+            Login.setId(member.getId());
+            Login.setName(member.getName()); // 이름 설정
+            Login.setEmail(member.getEmail()); // 이메일 설정
             Login.setGold(member.getGold());
             CommonService.msg("로그인 성공");
         } else {
