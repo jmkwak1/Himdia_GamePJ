@@ -238,7 +238,7 @@ public class Game extends Application {
         // gold 값을 저장한 후에 게임 종료를 알리는 메시지를 표시
         showAlert("게임 종료", "게임이 종료되었습니다. 저장되었습니다.");
 
-        score = Login.getGold(); // gold 값을 초기화하여 다음 게임에 영향을 주지 않도록 함
+        score = 0; // gold 값을 초기화하여 다음 게임에 영향을 주지 않도록 함
         goldLabel.setText("Gold: " + score);
     }
 

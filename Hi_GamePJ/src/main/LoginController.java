@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    @FXML   
+    @FXML
     private TextField idFld;
     @FXML
     private PasswordField pwFld;
@@ -35,11 +35,10 @@ public class LoginController implements Initializable {
         System.out.println("ID : " + Login.getId() + " gold : " + Login.getGold());
         if (Login.getId() != null) {
             opener.mainOpen();
-            
+
             // gold 값을 저장
             String id = Login.getId(); // 로그인한 아이디 가져오기
             int goldValue = Login.getGold(); // 로그인한 사용자의 gold 값 가져오기
-            scoreDAO.saveScore(id, goldValue);
         }
     }
 
